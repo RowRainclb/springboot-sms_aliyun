@@ -1,0 +1,14 @@
+logging:
+  config: classpath:log4j2.xml
+
+spring:
+  application:
+    name: springboot-sms
+
+aliyun:
+  accessKeyID: LTAIP1D9Vl3HaKGV
+  accessKeySecret: Enqb98Ngac8bf8DaYE22IBxAMqbDZy
+  defaultMessageBody : iibd
+  sms:
+    topic: sms.topic-cn-beijing
+    endPoint: https://1211596389984633.mns.cn-beijing.aliyuncs.com/

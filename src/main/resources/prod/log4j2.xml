@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <property name="PROJECT_NAME">springboot-sms</property>
+        <property name="LOG_PATH">/var/log/${PROJECT_NAME}/</property>
+        <property name="LOG_FILE">springboot-sms</property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>%highlight{%-d{yyyy-MM-dd HH:mm:ss} [%c]-[%p] - %m%n}</pattern>
+            </PatternLayout>
+        </Console>
+        <RollingRandomAccessFile name="SpringbootSmsRollingFile" fileName="${LOG_PATH}/${LOG_FILE}.log"
+                                 filePattern="${LOG_PATH}/$${date:yyyyMM}/${LOG_FILE}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout>
+                <pattern>%-d{yyyy-MM-dd HH:mm:ss} [%c]-[%p] - %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="50"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="org.springframework" level="warn">
+        </AsyncLogger>
+        <AsyncLogger name="com.k2data.k2app" level="info">
+        </AsyncLogger>
+        <AsyncLogger name="com.k2data.app" level="info">
+        </AsyncLogger>
+        <AsyncRoot level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="SpringbootSmsRollingFile"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>
